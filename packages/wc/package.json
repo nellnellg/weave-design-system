@@ -1,5 +1,5 @@
 {
-  "name": "@ds/wc",
+  "name": "@weave/wc",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -26,12 +26,12 @@
     "dev": "vite build --watch"
   },
   "dependencies": {
-    "@ds/behavior": "workspace:*",
-    "@ds/emit-web": "workspace:*",
-    "@ds/platform-web": "workspace:*"
+    "@weave/behavior": "workspace:*",
+    "@weave/emit-web": "workspace:*",
+    "@weave/platform-web": "workspace:*"
   },
   "devDependencies": {
-    "@ds/tokens": "workspace:*",
+    "@weave/tokens": "workspace:*",
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.0"
   }

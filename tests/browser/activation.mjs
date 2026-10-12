@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test';
 
 export function activationRegressions() {
   for (const [tag, role, initial, changed] of [
-    ['ds-switch', 'switch', false, true],
-    ['ds-checkbox', 'checkbox', 'unchecked', 'checked'],
+    ['weave-switch', 'switch', false, true],
+    ['weave-checkbox', 'checkbox', 'unchecked', 'checked'],
   ]) {
     for (const input of ['mouse', 'Enter', 'Space']) {
       test(`${tag} host can veto ${input} activation before state and notification`, async ({
@@ -56,8 +56,8 @@ export function activationRegressions() {
     await page.evaluate(async () => {
       await import('/src/browser-tests.ts');
       for (const collection of [
-        document.querySelector('ds-tabs'),
-        document.querySelector('ds-radio-group'),
+        document.querySelector('weave-tabs'),
+        document.querySelector('weave-radio-group'),
       ]) {
         const member = collection.lastElementChild;
         member.addEventListener('click', (event) => {
@@ -67,10 +67,10 @@ export function activationRegressions() {
           }, 0);
         });
       }
-      const accordion = document.createElement('ds-accordion');
+      const accordion = document.createElement('weave-accordion');
       accordion.id = 'accordion-activation';
       accordion.innerHTML =
-        '<ds-accordion-item value="a"><span slot="heading">Section</span></ds-accordion-item>';
+        '<weave-accordion-item value="a"><span slot="heading">Section</span></weave-accordion-item>';
       accordion.firstElementChild.addEventListener('click', (event) => {
         event.preventDefault();
         setTimeout(() => {
@@ -100,9 +100,9 @@ export function activationRegressions() {
     await page.goto('/browser-tests.html');
     const result = await page.evaluate(async () => {
       await import('/src/browser-tests.ts');
-      const disabled = document.createElement('ds-switch');
-      const readOnly = document.createElement('ds-switch');
-      const removed = document.createElement('ds-switch');
+      const disabled = document.createElement('weave-switch');
+      const readOnly = document.createElement('weave-switch');
+      const removed = document.createElement('weave-switch');
       document.body.append(disabled, readOnly, removed);
       disabled.shadowRoot.querySelector('button').click();
       disabled.disabled = true;
@@ -111,7 +111,7 @@ export function activationRegressions() {
       removed.shadowRoot.querySelector('button').click();
       removed.remove();
       document.body.append(removed);
-      const tabs = document.querySelector('ds-tabs');
+      const tabs = document.querySelector('weave-tabs');
       const member = tabs.lastElementChild;
       member.shadowRoot.querySelector('button').click();
       member.value = 'replaced';
@@ -136,8 +136,8 @@ export function activationRegressions() {
   }) => {
     await page.goto('/browser-tests.html');
     const result = await page.evaluate(async () => {
-      await customElements.whenDefined('ds-switch');
-      const host = document.createElement('ds-switch');
+      await customElements.whenDefined('weave-switch');
+      const host = document.createElement('weave-switch');
       document.body.append(host);
       const changes = [];
       host.addEventListener('ds-checked-change', (event) => changes.push(event.detail));
@@ -154,18 +154,18 @@ export function activationRegressions() {
     await page.goto('/browser-tests.html');
     await page.evaluate(async () => {
       await import('/src/browser-tests.ts');
-      const slider = document.createElement('ds-slider');
+      const slider = document.createElement('weave-slider');
       slider.id = 'keyboard-slider';
       slider.ariaLabel = 'Keyboard range';
       slider.value = 20;
       document.body.append(slider);
-      const tooltip = document.createElement('ds-tooltip');
+      const tooltip = document.createElement('weave-tooltip');
       tooltip.id = 'keyboard-tooltip';
       tooltip.innerHTML =
         '<button slot="trigger">Tooltip trigger</button><span slot="content">Help</span>';
       document.body.append(tooltip);
       tooltip.open = true;
-      for (const host of [slider, document.querySelector('ds-tabs'), tooltip]) {
+      for (const host of [slider, document.querySelector('weave-tabs'), tooltip]) {
         host.addEventListener('keydown', (event) => event.preventDefault(), {
           capture: true,
           once: true,

@@ -97,14 +97,14 @@ function onRootClick(event: MouseEvent) {
     :aria-disabled="disabled || undefined"
     :aria-checked="selected"
     :tabindex="collection.isTabStop(value) ? 0 : -1"
-    data-ds-component="RadioItem"
-    data-ds-part="root"
+    data-weave-component="RadioItem"
+    data-weave-part="root"
     @click="onRootClick"
   >
-    <div data-ds-part="control">
-      <div :hidden="!selected" data-ds-part="mark" />
+    <div data-weave-part="control">
+      <div :hidden="!selected" data-weave-part="mark" />
     </div>
-    <div data-ds-part="label">
+    <div data-weave-part="label">
       <slot name="label" />
     </div>
     <slot />

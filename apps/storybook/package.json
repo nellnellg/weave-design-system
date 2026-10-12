@@ -8,8 +8,8 @@
     "build": "storybook build"
   },
   "dependencies": {
-    "@ds/react": "workspace:*",
-    "@ds/tokens": "workspace:*",
+    "@weave/react": "workspace:*",
+    "@weave/tokens": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

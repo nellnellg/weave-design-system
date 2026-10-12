@@ -11,7 +11,7 @@ const params = new URLSearchParams(location.search);
   imports: [Tabs, TabItem, RadioGroup, RadioItem, Dialog],
   template: `
     @if (dismissal) {
-      <dialog dsDialog [(open)]="open">
+      <dialog weaveDialog [(open)]="open">
         <span slot="title">Conformance dialog</span>
         <div slot="body">
           <button id="inside">Inside</button><button id="overflow">Overflow child</button>
@@ -21,17 +21,17 @@ const params = new URLSearchParams(location.search);
     } @else {
       <button id="before">Before</button>
       @if (radio) {
-        <div dsRadioGroup [value]="value()" (valueChange)="change($event)">
+        <div weaveRadioGroup [value]="value()" (valueChange)="change($event)">
           @for (id of ids; track id) {
-            <div dsRadioItem [value]="id">
+            <div weaveRadioItem [value]="id">
               <span slot="label">{{ id }}</span>
             </div>
           }
         </div>
       } @else {
-        <div dsTabs [value]="value()" (valueChange)="change($event)">
+        <div weaveTabs [value]="value()" (valueChange)="change($event)">
           @for (id of ids; track id) {
-            <button dsTabItem [value]="id">
+            <button weaveTabItem [value]="id">
               <span slot="label">{{ id }}</span>
             </button>
           }

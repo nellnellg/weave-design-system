@@ -12,18 +12,18 @@
  * which is the wrong place for it. See docs/research/0002.
  */
 
-[data-ds-component='Slider'] {
+[data-weave-component='Slider'] {
   /* the scoping handle. Everything else is yours, for now. */
 }
 
-[data-ds-component='Slider'] [data-ds-part='track'] {
+[data-weave-component='Slider'] [data-weave-part='track'] {
   /* no declared layout for this part */
 }
 
-[data-ds-component='Slider'] [data-ds-part='fill'] {
+[data-weave-component='Slider'] [data-weave-part='fill'] {
   /* no declared layout for this part */
 }
 
-[data-ds-component='Slider'] [data-ds-part='thumb'] {
+[data-weave-component='Slider'] [data-weave-part='thumb'] {
   /* no declared layout for this part */
 }

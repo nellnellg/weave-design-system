@@ -129,9 +129,9 @@ Class names are hashed and are not a public surface. Generated components expose
 attribute families instead, and between them they are the entire styling contract:
 
 ```css
-[data-ds-component='Button']                      /* this component */
-[data-ds-component='Button'] [data-ds-part='label']   /* one of its regions */
-[data-ds-component='Button'][data-ds-hierarchy='primary']  /* an axis value */
+[data-weave-component='Button']                      /* this component */
+[data-weave-component='Button'] [data-weave-part='label']   /* one of its regions */
+[data-weave-component='Button'][data-weave-hierarchy='primary']  /* an axis value */
 ```
 
 The prefix comes from `/ds.config.json` and moves with `pnpm init-ds`. Never hard-code it.

@@ -57,13 +57,13 @@ const fallthrough = computed(() => ({ ...attrs }));
     v-bind="fallthrough"
     :id="baseId"
     :aria-disabled="disabled || undefined"
-    :data-ds-state-invalid="invalid || undefined"
-    :data-ds-state-touched="touched || undefined"
-    :data-ds-state-dirty="dirty || undefined"
-    data-ds-component="Field"
-    data-ds-part="root"
+    :data-weave-state-invalid="invalid || undefined"
+    :data-weave-state-touched="touched || undefined"
+    :data-weave-state-dirty="dirty || undefined"
+    data-weave-component="Field"
+    data-weave-part="root"
   >
-    <div :id="`${baseId}-label`" data-ds-part="label">
+    <div :id="`${baseId}-label`" data-weave-part="label">
       <slot name="label" />
     </div>
     <div
@@ -73,14 +73,14 @@ const fallthrough = computed(() => ({ ...attrs }));
         [`${baseId}-description`, invalid ? `${baseId}-error` : null].filter(Boolean).join(' ') ||
         undefined
       "
-      data-ds-part="control"
+      data-weave-part="control"
     >
       <slot name="control" />
     </div>
-    <div :id="`${baseId}-description`" data-ds-part="description">
+    <div :id="`${baseId}-description`" data-weave-part="description">
       <slot name="description" />
     </div>
-    <div :id="`${baseId}-error`" :hidden="!invalid" data-ds-part="error">
+    <div :id="`${baseId}-error`" :hidden="!invalid" data-weave-part="error">
       <slot name="error" />
     </div>
     <slot />

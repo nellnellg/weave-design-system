@@ -62,11 +62,11 @@ function onRootInput(event: Event) {
     :disabled="disabled || undefined"
     :aria-readonly="readOnly || undefined"
     :aria-invalid="invalid || undefined"
-    :data-ds-size="size"
+    :data-weave-size="size"
     :value="value"
     :readonly="readOnly"
-    data-ds-component="TextField"
-    data-ds-part="root"
+    data-weave-component="TextField"
+    data-weave-part="root"
     @input="onRootInput"
   />
 </template>

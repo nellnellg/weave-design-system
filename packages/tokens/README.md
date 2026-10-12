@@ -1,4 +1,4 @@
-# @ds/tokens
+# @weave/tokens
 
 DTCG JSON in, CSS custom properties and TypeScript constants out.
 
@@ -39,7 +39,7 @@ next build silently discards the edit.
 ## Consuming it
 
 ```ts
-import '@ds/tokens/css'; // once, at the app root — @ds/react's barrel already does this
+import '@weave/tokens/css'; // once, at the app root — @weave/react's barrel already does this
 ```
 
 The prefix comes from `/ds.config.json`, so after `pnpm init-ds weave` the properties are

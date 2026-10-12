@@ -7,13 +7,13 @@ import { Component, ViewEncapsulation, input, model } from '@angular/core';
 
 @Component({
   // The binding's `element` becomes a SELECTOR, because an Angular component attaches
-  // to an element rather than rendering one. A consumer writes <button dsCheckbox>.
-  selector: 'button[dsCheckbox]',
-  exportAs: 'dsCheckbox',
+  // to an element rather than rendering one. A consumer writes <button weaveCheckbox>.
+  selector: 'button[weaveCheckbox]',
+  exportAs: 'weaveCheckbox',
   // ViewEncapsulation.None IS LOAD-BEARING. Angular's default rewrites every selector in
   // these stylesheets to include a generated _ngcontent attribute, which would scope them
   // to this component and break the one property the whole system rests on: that a theme
-  // file selecting on [data-ds-component] dresses the React, Vue and Angular builds
+  // file selecting on [data-weave-component] dresses the React, Vue and Angular builds
   // alike. It fails silently — the CSS loads, matches nothing, and the component renders
   // unstyled.
   encapsulation: ViewEncapsulation.None,
@@ -25,16 +25,16 @@ import { Component, ViewEncapsulation, input, model } from '@angular/core';
       "checked() === 'unchecked' ? 'false' : checked() === 'checked' ? 'true' : checked() === 'mixed' ? 'mixed' : null",
     '[attr.disabled]': 'disabled() || null',
     '[attr.aria-invalid]': 'invalid() || null',
-    'data-ds-component': 'Checkbox',
-    'data-ds-part': 'root',
+    'data-weave-component': 'Checkbox',
+    'data-weave-part': 'root',
     '(click)': 'activate($event)',
   },
   template: `
-    <div data-ds-part="box">
-      <div [attr.hidden]="checked() === 'checked' ? null : ''" data-ds-part="tick"></div>
-      <div [attr.hidden]="checked() === 'mixed' ? null : ''" data-ds-part="dash"></div>
+    <div data-weave-part="box">
+      <div [attr.hidden]="checked() === 'checked' ? null : ''" data-weave-part="tick"></div>
+      <div [attr.hidden]="checked() === 'mixed' ? null : ''" data-weave-part="dash"></div>
     </div>
-    <div data-ds-part="label">
+    <div data-weave-part="label">
       <ng-content select="[slot=label]" />
     </div>
     <ng-content />

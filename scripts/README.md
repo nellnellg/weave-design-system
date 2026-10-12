@@ -33,8 +33,8 @@ contract enforced only by `verify` is enforced on whichever machine happens to r
 
 ## `init-ds` is different, and runs once
 
-It is a codemod, not a check. It rewrites the package scope (`@ds/*`), the CSS custom-property
-prefix (`--ds-*`) and the data-attribute prefix (`data-ds-*`) **together**, because they are one
+It is a codemod, not a check. It rewrites the package scope (`@weave/*`), the CSS custom-property
+prefix (`--weave-*`) and the data-attribute prefix (`data-weave-*`) **together**, because they are one
 decision in three syntaxes. Renaming one by hand leaves a repo that builds green and is wrong.
 
 `/ds.config.json` is the source of truth for that identity; `init-ds` rewrites it and every

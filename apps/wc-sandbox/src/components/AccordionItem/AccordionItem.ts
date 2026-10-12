@@ -40,11 +40,11 @@ TEMPLATE.innerHTML = `
 let nextId = 0;
 
 export class AccordionItem extends HTMLElement {
-  static readonly tagName = 'ds-accordion-item';
+  static readonly tagName = 'weave-accordion-item';
   static readonly observedAttributes = ['disabled', 'value'];
 
   readonly #root: HTMLElement;
-  readonly #baseId = 'ds-accordion-item-' + nextId++;
+  readonly #baseId = 'weave-accordion-item-' + nextId++;
   #collection: Accordion | null = null;
   readonly #pendingActivations = new Set<number>();
 
@@ -81,10 +81,10 @@ export class AccordionItem extends HTMLElement {
   }
 
   connectedCallback(): void {
-    this.#collection = this.closest<Accordion>('ds-accordion');
+    this.#collection = this.closest<Accordion>('weave-accordion');
     if (!this.#collection) {
       throw new Error(
-        '<ds-accordion-item> must be inside a <ds-accordion>. There is no selection to compare against, and looking unselected would hide the mistake.',
+        '<weave-accordion-item> must be inside a <weave-accordion>. There is no selection to compare against, and looking unselected would hide the mistake.',
       );
     }
     this.#collection.addEventListener(ACCORDION_CHANGE, this.#onCollectionChange);
@@ -203,6 +203,6 @@ if (!customElements.get(AccordionItem.tagName)) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ds-accordion-item': AccordionItem;
+    'weave-accordion-item': AccordionItem;
   }
 }

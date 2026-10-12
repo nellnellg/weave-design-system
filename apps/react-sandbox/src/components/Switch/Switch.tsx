@@ -61,11 +61,11 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch
         rest.onClick?.(event);
         activate(event);
       }}
-      data-ds-component="Switch"
-      data-ds-part="root"
+      data-weave-component="Switch"
+      data-weave-part="root"
       className={className}
     >
-      <div data-ds-part="thumb" />
+      <div data-weave-part="thumb" />
     </button>
   );
 });

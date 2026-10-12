@@ -13,12 +13,12 @@ import {
   model,
 } from '@angular/core';
 import type { Signal } from '@angular/core';
-import { useLinearNavigation } from '@ds/angular/behavior';
-import type { MemberRegistration, NavigationOptions } from '@ds/angular/behavior';
+import { useLinearNavigation } from '@weave/angular/behavior';
+import type { MemberRegistration, NavigationOptions } from '@weave/angular/behavior';
 
 // Transcribed field for field from Tabs.contract.json > collection.navigation.
 // The cases this commits us to are in
-// @ds/contracts/conformance/linear-navigation.json.
+// @weave/contracts/conformance/linear-navigation.json.
 const NAVIGATION: NavigationOptions = {
   orientation: 'horizontal',
   wrap: true,
@@ -58,13 +58,13 @@ export const TABS = new InjectionToken<TabsContext>('Tabs');
 
 @Component({
   // The binding's `element` becomes a SELECTOR, because an Angular component attaches
-  // to an element rather than rendering one. A consumer writes <div dsTabs>.
-  selector: 'div[dsTabs]',
-  exportAs: 'dsTabs',
+  // to an element rather than rendering one. A consumer writes <div weaveTabs>.
+  selector: 'div[weaveTabs]',
+  exportAs: 'weaveTabs',
   // ViewEncapsulation.None IS LOAD-BEARING. Angular's default rewrites every selector in
   // these stylesheets to include a generated _ngcontent attribute, which would scope them
   // to this component and break the one property the whole system rests on: that a theme
-  // file selecting on [data-ds-component] dresses the React, Vue and Angular builds
+  // file selecting on [data-weave-component] dresses the React, Vue and Angular builds
   // alike. It fails silently — the CSS loads, matches nothing, and the component renders
   // unstyled.
   encapsulation: ViewEncapsulation.None,
@@ -73,12 +73,12 @@ export const TABS = new InjectionToken<TabsContext>('Tabs');
   host: {
     '[attr.id]': 'baseId',
     '[attr.aria-disabled]': 'disabled() || null',
-    'data-ds-component': 'Tabs',
-    'data-ds-part': 'root',
+    'data-weave-component': 'Tabs',
+    'data-weave-part': 'root',
     '(keydown)': 'nav.onKeyDown($event)',
   },
   template: `
-    <div role="tablist" [attr.id]="baseId + '-list'" data-ds-part="list"></div>
+    <div role="tablist" [attr.id]="baseId + '-list'" data-weave-part="list"></div>
     <ng-content />
   `,
 })
@@ -88,7 +88,7 @@ export class Tabs implements TabsContext {
   /** The current selection, by member identity. Two-way: `[(value)]`. */
   readonly value = model<string>('');
 
-  readonly baseId = 'ds-tabs-' + nextId++;
+  readonly baseId = 'weave-tabs-' + nextId++;
 
   readonly selection = this.value.asReadonly();
   readonly collectionDisabled = computed(() => Boolean(this.disabled()));

@@ -23,7 +23,7 @@ TEMPLATE.innerHTML = `
 `;
 
 export class TextField extends HTMLElement {
-  static readonly tagName = 'ds-text-field';
+  static readonly tagName = 'weave-text-field';
   static readonly formAssociated = true;
   static readonly observedAttributes = [
     'disabled',
@@ -236,6 +236,6 @@ if (!customElements.get(TextField.tagName)) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ds-text-field': TextField;
+    'weave-text-field': TextField;
   }
 }

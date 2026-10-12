@@ -12,20 +12,20 @@
  * which is the wrong place for it. See docs/research/0002.
  */
 
-[data-ds-component='Checkbox'] {
+[data-weave-component='Checkbox'] {
   /* the scoping handle. Everything else is yours, for now. */
 }
 
-/* Hiding is a contract claim, not a style. See the note in @ds/emit-web. */
-[data-ds-component='Checkbox'][hidden],
-[data-ds-component='Checkbox'] [hidden] {
+/* Hiding is a contract claim, not a style. See the note in @weave/emit-web. */
+[data-weave-component='Checkbox'][hidden],
+[data-weave-component='Checkbox'] [hidden] {
   display: none !important;
 }
 
-[data-ds-component='Checkbox'] [data-ds-part='box'] {
+[data-weave-component='Checkbox'] [data-weave-part='box'] {
   /* no declared layout for this part */
 }
 
-[data-ds-component='Checkbox'] [data-ds-part='label'] {
+[data-weave-component='Checkbox'] [data-weave-part='label'] {
   /* no declared layout for this part */
 }

@@ -9,12 +9,12 @@ import {
   useLinearNavigation,
   type MemberRegistration,
   type NavigationOptions,
-} from '@ds/react/behavior';
+} from '@weave/react/behavior';
 import './Tabs.structure.css';
 import './Tabs.theme.css';
 
 // Transcribed field for field from Tabs.contract.json > collection.navigation.
-// The cases this commits us to are in @ds/contracts/conformance/linear-navigation.json.
+// The cases this commits us to are in @weave/contracts/conformance/linear-navigation.json.
 const NAVIGATION: NavigationOptions = {
   orientation: 'horizontal',
   wrap: true,
@@ -103,12 +103,12 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
         rest.onKeyDown?.(event);
         nav.onKeyDown(event);
       }}
-      data-ds-component="Tabs"
-      data-ds-part="root"
+      data-weave-component="Tabs"
+      data-weave-part="root"
       className={className}
     >
       <TabsContext.Provider value={contextValue}>
-        <div role="tablist" id={`${baseId}-list`} data-ds-part="list" />
+        <div role="tablist" id={`${baseId}-list`} data-weave-part="list" />
         {children}
       </TabsContext.Provider>
     </div>

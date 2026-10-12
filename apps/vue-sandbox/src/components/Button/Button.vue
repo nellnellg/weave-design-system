@@ -53,20 +53,20 @@ const fallthrough = computed(() => ({ ...attrs }));
     v-bind="fallthrough"
     type="button"
     :disabled="disabled || undefined"
-    :data-ds-state-loading="loading || undefined"
-    :data-ds-hierarchy="hierarchy"
-    :data-ds-variant="variant"
-    :data-ds-size="size"
-    data-ds-component="Button"
-    data-ds-part="root"
+    :data-weave-state-loading="loading || undefined"
+    :data-weave-hierarchy="hierarchy"
+    :data-weave-variant="variant"
+    :data-weave-size="size"
+    data-weave-component="Button"
+    data-weave-part="root"
   >
-    <div data-ds-part="icon-start">
+    <div data-weave-part="icon-start">
       <slot name="iconStart" />
     </div>
-    <div data-ds-part="label">
+    <div data-weave-part="label">
       <slot />
     </div>
-    <div data-ds-part="icon-end">
+    <div data-weave-part="icon-end">
       <slot name="iconEnd" />
     </div>
   </button>

@@ -41,7 +41,7 @@ The questions become decisions with their reasoning attached. The component is b
 decision that already exists — and the machinery checks that it was.
 
 `packages/react`, `packages/vue`, `packages/angular` and `packages/wc` each ship an emitter, bindings
-and behaviour primitives, and **zero components**. `@ds/contracts` holds fifteen contracts, written
+and behaviour primitives, and **zero components**. `@weave/contracts` holds fifteen contracts, written
 to find out what a contract must be able to say before it can be compiled at all. The four sandboxes
 hold the generated components those contracts produce. Nothing here is a component library you are
 meant to consume as is. I encourage you to modify or build your own emitters based on your product stack.
@@ -50,7 +50,7 @@ meant to consume as is. I encourage you to modify or build your own emitters bas
 
 ```bash
 pnpm install
-pnpm init-ds <yourname>    # brand it: @ds/* -> @yourname/*, --ds-* -> --yourname-*
+pnpm init-ds <yourname>    # brand it: @weave/* -> @yourname/*, --weave-* -> --yourname-*
 pnpm install               # workspace links move with the scope
 pnpm verify                # every gate, green
 pnpm dev                   # React sandbox at localhost:4300
@@ -205,7 +205,7 @@ Found a bug or have a suggestion?
 3. Run `pnpm verify` — the full gate, and CI runs the same one
 4. Submit a pull request with a clear description
 
-**Adding a mobile framework backend is the most useful contribution there is**. A new backend is a `packages/<framework>/` with its own bindings, emitter and prop-binding table. Nothing in `@ds/contracts` should have to change to accommodate it — if something does, that is the finding, and it belongs in an issue.
+**Adding a mobile framework backend is the most useful contribution there is**. A new backend is a `packages/<framework>/` with its own bindings, emitter and prop-binding table. Nothing in `@weave/contracts` should have to change to accommodate it — if something does, that is the finding, and it belongs in an issue.
 
 ## Links
 

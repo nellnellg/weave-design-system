@@ -5,12 +5,12 @@
 
 import { forwardRef, useId, useState, useCallback } from 'react';
 import type { HTMLAttributes, ReactNode } from 'react';
-import { useDismissal, type DismissalOptions } from '@ds/react/behavior';
+import { useDismissal, type DismissalOptions } from '@weave/react/behavior';
 import './Tooltip.structure.css';
 import './Tooltip.theme.css';
 
 // Transcribed from Tooltip.contract.json > dismisses. The cases this commits us to
-// are in @ds/contracts/conformance/dismissal.json.
+// are in @weave/contracts/conformance/dismissal.json.
 const DISMISSAL: DismissalOptions = {
   on: ['escape'],
 };
@@ -69,15 +69,15 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip
       {...rest}
       ref={ref}
       id={baseId}
-      data-ds-state-open={openValue || undefined}
+      data-weave-state-open={openValue || undefined}
       aria-disabled={disabled || undefined}
-      data-ds-placement={placement}
+      data-weave-placement={placement}
       onKeyDown={(event) => {
         rest.onKeyDown?.(event);
         dismissal.onKeyDown(event);
       }}
-      data-ds-component="Tooltip"
-      data-ds-part="root"
+      data-weave-component="Tooltip"
+      data-weave-part="root"
       className={className}
     >
       <div
@@ -85,11 +85,11 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip
         aria-describedby={
           [openValue ? `${baseId}-popup` : null].filter(Boolean).join(' ') || undefined
         }
-        data-ds-part="trigger"
+        data-weave-part="trigger"
       >
         {trigger}
       </div>
-      <div role="tooltip" id={`${baseId}-popup`} hidden={!openValue} data-ds-part="popup">
+      <div role="tooltip" id={`${baseId}-popup`} hidden={!openValue} data-weave-part="popup">
         {content}
       </div>
       {children}

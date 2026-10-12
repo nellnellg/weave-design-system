@@ -7,8 +7,8 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "@ds/wc/behavior": ["../../packages/wc/src/behavior/index.ts"],
-      "@ds/wc": ["../../packages/wc/src/index.ts"]
+      "@weave/wc/behavior": ["../../packages/wc/src/behavior/index.ts"],
+      "@weave/wc": ["../../packages/wc/src/index.ts"]
     }
   },
   "include": ["src"]

@@ -1,5 +1,5 @@
 {
-  "name": "@ds/contracts",
+  "name": "@weave/contracts",
   "version": "0.0.0",
   "private": true,
   "type": "module",

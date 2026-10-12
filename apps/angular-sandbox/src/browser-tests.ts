@@ -31,27 +31,29 @@ export function updateRoster(
   selector: 'browser-fixtures',
   imports: [Button, Accordion, AccordionItem, Tabs, TabItem, RadioGroup, RadioItem],
   template: `
-    <button dsButton>Style probe</button>
+    <button weaveButton>Style probe</button>
     <button id="rename-accordion" (click)="identity.set('renamed')">Rename section</button>
-    <div dsAccordion>
-      <div dsAccordionItem [value]="identity()">
+    <div weaveAccordion>
+      <div weaveAccordionItem [value]="identity()">
         <span slot="heading">Section heading</span>
         <p slot="panel">Section contents</p>
       </div>
     </div>
-    <div data-testid="tabs" dsTabs [(value)]="tabs.value">
+    <div data-testid="tabs" weaveTabs [(value)]="tabs.value">
       @if (tabs.visible()) {
-        <button dsTabItem [value]="tabs.identity()" [disabled]="tabs.disabled()">First tabs</button>
+        <button weaveTabItem [value]="tabs.identity()" [disabled]="tabs.disabled()">
+          First tabs
+        </button>
       }
-      <button dsTabItem value="b">Second tabs</button>
+      <button weaveTabItem value="b">Second tabs</button>
     </div>
-    <div data-testid="radios" dsRadioGroup [(value)]="radios.value">
+    <div data-testid="radios" weaveRadioGroup [(value)]="radios.value">
       @if (radios.visible()) {
-        <div dsRadioItem [value]="radios.identity()" [disabled]="radios.disabled()">
+        <div weaveRadioItem [value]="radios.identity()" [disabled]="radios.disabled()">
           First radios
         </div>
       }
-      <div dsRadioItem value="b">Second radios</div>
+      <div weaveRadioItem value="b">Second radios</div>
     </div>
   `,
 })

@@ -78,9 +78,9 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(function Acc
       ref={ref}
       id={baseId}
       aria-disabled={disabled || undefined}
-      data-ds-orientation={orientation}
-      data-ds-component="Accordion"
-      data-ds-part="root"
+      data-weave-orientation={orientation}
+      data-weave-component="Accordion"
+      data-weave-part="root"
       className={className}
     >
       <AccordionContext.Provider value={contextValue}>{children}</AccordionContext.Provider>

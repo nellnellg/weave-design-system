@@ -79,12 +79,12 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(function TabI
         rest.onClick?.(event);
         activate(event);
       }}
-      data-ds-component="TabItem"
-      data-ds-part="root"
+      data-weave-component="TabItem"
+      data-weave-part="root"
       className={className}
     >
-      <div data-ds-part="label">{label}</div>
-      <div hidden={!selected} data-ds-part="indicator" />
+      <div data-weave-part="label">{label}</div>
+      <div hidden={!selected} data-weave-part="indicator" />
       {children}
     </button>
   );

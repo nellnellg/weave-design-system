@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import type { KeyboardEvent, PointerEvent } from 'react';
-import { apply, fractionOf, intentFor, snap, valueAt } from '@ds/behavior/range-stepping';
-import type { RangeOptions } from '@ds/behavior/range-stepping';
+import { apply, fractionOf, intentFor, snap, valueAt } from '@weave/behavior/range-stepping';
+import type { RangeOptions } from '@weave/behavior/range-stepping';
 
-export type { RangeIntent, RangeOptions, RangeOrientation } from '@ds/behavior/range-stepping';
+export type { RangeIntent, RangeOptions, RangeOrientation } from '@weave/behavior/range-stepping';
 
 export interface RangeControl {
   /** Goes on the part the contract names as the `track`. It is what a pointer is measured against. */
@@ -22,8 +22,8 @@ export interface RangeControl {
 /**
  * A number in a range, operated by keyboard and pointer.
  *
- * The arithmetic lives in @ds/behavior as pure functions, so it can be executed against the
- * conformance cases in `@ds/contracts/conformance/range-stepping.json`. This hook is the React
+ * The arithmetic lives in @weave/behavior as pure functions, so it can be executed against the
+ * conformance cases in `@weave/contracts/conformance/range-stepping.json`. This hook is the React
  * binding around it: the track's box, pointer capture, and the drag.
  *
  * @param options  the contract's `range` block merged with the operated state's min/max/step

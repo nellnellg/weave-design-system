@@ -8,8 +8,8 @@
     "useDefineForClassFields": false,
     "baseUrl": ".",
     "paths": {
-      "@ds/angular/behavior": ["../../packages/angular/src/behavior/index.ts"],
-      "@ds/angular": ["../../packages/angular/src/index.ts"]
+      "@weave/angular/behavior": ["../../packages/angular/src/behavior/index.ts"],
+      "@weave/angular": ["../../packages/angular/src/index.ts"]
     }
   },
   "include": ["src/**/*.ts"]

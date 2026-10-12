@@ -12,20 +12,20 @@
  * which is the wrong place for it. See docs/research/0002.
  */
 
-[data-ds-component='RadioItem'] {
+[data-weave-component='RadioItem'] {
   /* the scoping handle. Everything else is yours, for now. */
 }
 
-/* Hiding is a contract claim, not a style. See the note in @ds/emit-web. */
-[data-ds-component='RadioItem'][hidden],
-[data-ds-component='RadioItem'] [hidden] {
+/* Hiding is a contract claim, not a style. See the note in @weave/emit-web. */
+[data-weave-component='RadioItem'][hidden],
+[data-weave-component='RadioItem'] [hidden] {
   display: none !important;
 }
 
-[data-ds-component='RadioItem'] [data-ds-part='control'] {
+[data-weave-component='RadioItem'] [data-weave-part='control'] {
   /* no declared layout for this part */
 }
 
-[data-ds-component='RadioItem'] [data-ds-part='label'] {
+[data-weave-component='RadioItem'] [data-weave-part='label'] {
   /* no declared layout for this part */
 }

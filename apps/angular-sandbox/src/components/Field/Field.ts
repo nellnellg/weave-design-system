@@ -12,13 +12,13 @@ let nextId = 0;
 
 @Component({
   // The binding's `element` becomes a SELECTOR, because an Angular component attaches
-  // to an element rather than rendering one. A consumer writes <div dsField>.
-  selector: 'div[dsField]',
-  exportAs: 'dsField',
+  // to an element rather than rendering one. A consumer writes <div weaveField>.
+  selector: 'div[weaveField]',
+  exportAs: 'weaveField',
   // ViewEncapsulation.None IS LOAD-BEARING. Angular's default rewrites every selector in
   // these stylesheets to include a generated _ngcontent attribute, which would scope them
   // to this component and break the one property the whole system rests on: that a theme
-  // file selecting on [data-ds-component] dresses the React, Vue and Angular builds
+  // file selecting on [data-weave-component] dresses the React, Vue and Angular builds
   // alike. It fails silently — the CSS loads, matches nothing, and the component renders
   // unstyled.
   encapsulation: ViewEncapsulation.None,
@@ -26,28 +26,32 @@ let nextId = 0;
   host: {
     '[attr.id]': 'baseId',
     '[attr.aria-disabled]': 'disabled() || null',
-    '[attr.data-ds-state-invalid]': 'invalid() || null',
-    '[attr.data-ds-state-touched]': 'touched() || null',
-    '[attr.data-ds-state-dirty]': 'dirty() || null',
-    'data-ds-component': 'Field',
-    'data-ds-part': 'root',
+    '[attr.data-weave-state-invalid]': 'invalid() || null',
+    '[attr.data-weave-state-touched]': 'touched() || null',
+    '[attr.data-weave-state-dirty]': 'dirty() || null',
+    'data-weave-component': 'Field',
+    'data-weave-part': 'root',
   },
   template: `
-    <div [attr.id]="baseId + '-label'" data-ds-part="label">
+    <div [attr.id]="baseId + '-label'" data-weave-part="label">
       <ng-content select="[slot=label]" />
     </div>
     <div
       [attr.id]="baseId + '-control'"
       [attr.aria-labelledby]="baseId + '-label'"
       [attr.aria-describedby]="ids(baseId + '-description', invalid() ? baseId + '-error' : null)"
-      data-ds-part="control"
+      data-weave-part="control"
     >
       <ng-content select="[slot=control]" />
     </div>
-    <div [attr.id]="baseId + '-description'" data-ds-part="description">
+    <div [attr.id]="baseId + '-description'" data-weave-part="description">
       <ng-content select="[slot=description]" />
     </div>
-    <div [attr.id]="baseId + '-error'" [attr.hidden]="invalid() ? null : ''" data-ds-part="error">
+    <div
+      [attr.id]="baseId + '-error'"
+      [attr.hidden]="invalid() ? null : ''"
+      data-weave-part="error"
+    >
       <ng-content select="[slot=error]" />
     </div>
     <ng-content />
@@ -63,7 +67,7 @@ export class Field {
   /** The value differs from the value the field started with. Gates validation timing and enables a reset affordance. Two-way: `[(dirty)]`. */
   readonly dirty = model<boolean>(false);
 
-  readonly baseId = 'ds-field-' + nextId++;
+  readonly baseId = 'weave-field-' + nextId++;
 
   /**
    * Join the ids that are present, or null.

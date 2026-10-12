@@ -76,15 +76,15 @@ function onRootClick(event: MouseEvent) {
     "
     :disabled="disabled || undefined"
     :aria-invalid="invalid || undefined"
-    data-ds-component="Checkbox"
-    data-ds-part="root"
+    data-weave-component="Checkbox"
+    data-weave-part="root"
     @click="onRootClick"
   >
-    <div data-ds-part="box">
-      <div :hidden="!(checked === 'checked')" data-ds-part="tick" />
-      <div :hidden="!(checked === 'mixed')" data-ds-part="dash" />
+    <div data-weave-part="box">
+      <div :hidden="!(checked === 'checked')" data-weave-part="tick" />
+      <div :hidden="!(checked === 'mixed')" data-weave-part="dash" />
     </div>
-    <div data-ds-part="label">
+    <div data-weave-part="label">
       <slot name="label" />
     </div>
     <slot />

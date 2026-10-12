@@ -12,10 +12,10 @@
  * which is the wrong place for it. See docs/research/0002.
  */
 
-[data-ds-component='Switch'] {
+[data-weave-component='Switch'] {
   /* the scoping handle. Everything else is yours, for now. */
 }
 
-[data-ds-component='Switch'] [data-ds-part='thumb'] {
+[data-weave-component='Switch'] [data-weave-part='thumb'] {
   /* no declared layout for this part */
 }

@@ -12,20 +12,20 @@
  * which is the wrong place for it. See docs/research/0002.
  */
 
-[data-ds-component='TabItem'] {
+[data-weave-component='TabItem'] {
   /* the scoping handle. Everything else is yours, for now. */
 }
 
-/* Hiding is a contract claim, not a style. See the note in @ds/emit-web. */
-[data-ds-component='TabItem'][hidden],
-[data-ds-component='TabItem'] [hidden] {
+/* Hiding is a contract claim, not a style. See the note in @weave/emit-web. */
+[data-weave-component='TabItem'][hidden],
+[data-weave-component='TabItem'] [hidden] {
   display: none !important;
 }
 
-[data-ds-component='TabItem'] [data-ds-part='label'] {
+[data-weave-component='TabItem'] [data-weave-part='label'] {
   /* no declared layout for this part */
 }
 
-[data-ds-component='TabItem'] [data-ds-part='indicator'] {
+[data-weave-component='TabItem'] [data-weave-part='indicator'] {
   /* no declared layout for this part */
 }

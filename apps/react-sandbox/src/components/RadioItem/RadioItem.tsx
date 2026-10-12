@@ -75,14 +75,14 @@ export const RadioItem = forwardRef<HTMLDivElement, RadioItemProps>(function Rad
         rest.onClick?.(event);
         activate(event);
       }}
-      data-ds-component="RadioItem"
-      data-ds-part="root"
+      data-weave-component="RadioItem"
+      data-weave-part="root"
       className={className}
     >
-      <div data-ds-part="control">
-        <div hidden={!selected} data-ds-part="mark" />
+      <div data-weave-part="control">
+        <div hidden={!selected} data-weave-part="mark" />
       </div>
-      <div data-ds-part="label">{label}</div>
+      <div data-weave-part="label">{label}</div>
       {children}
     </div>
   );

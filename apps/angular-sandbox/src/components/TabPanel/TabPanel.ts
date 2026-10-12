@@ -8,13 +8,13 @@ import { TABS, type TabsContext } from '../Tabs/Tabs';
 
 @Component({
   // The binding's `element` becomes a SELECTOR, because an Angular component attaches
-  // to an element rather than rendering one. A consumer writes <div dsTabPanel>.
-  selector: 'div[dsTabPanel]',
-  exportAs: 'dsTabPanel',
+  // to an element rather than rendering one. A consumer writes <div weaveTabPanel>.
+  selector: 'div[weaveTabPanel]',
+  exportAs: 'weaveTabPanel',
   // ViewEncapsulation.None IS LOAD-BEARING. Angular's default rewrites every selector in
   // these stylesheets to include a generated _ngcontent attribute, which would scope them
   // to this component and break the one property the whole system rests on: that a theme
-  // file selecting on [data-ds-component] dresses the React, Vue and Angular builds
+  // file selecting on [data-weave-component] dresses the React, Vue and Angular builds
   // alike. It fails silently — the CSS loads, matches nothing, and the component renders
   // unstyled.
   encapsulation: ViewEncapsulation.None,
@@ -22,12 +22,12 @@ import { TABS, type TabsContext } from '../Tabs/Tabs';
   host: {
     '[attr.role]': "'tabpanel'",
     '[attr.id]': 'baseId()',
-    '[attr.data-ds-state-selected]': 'selected() || null',
+    '[attr.data-weave-state-selected]': 'selected() || null',
     '[attr.tabindex]': 'isDisabled() ? -1 : 0',
     '[attr.hidden]': "selected() ? null : ''",
     '[attr.aria-labelledby]': "collection.baseId + '-TabItem-' + value()",
-    'data-ds-component': 'TabPanel',
-    'data-ds-part': 'root',
+    'data-weave-component': 'TabPanel',
+    'data-weave-part': 'root',
   },
   template: ``,
 })

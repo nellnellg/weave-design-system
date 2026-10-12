@@ -32,15 +32,15 @@ a record. The build step is contract-first: `ds-component` authors the specifica
 backend emitter into the consumer repository.
 
 ```
-packages/contracts/ @ds/contracts — THE PRODUCT. Agnostic component contracts + their schema
-packages/tokens/   @ds/tokens — DTCG JSON -> CSS custom properties + TS constants
-packages/behavior/  @ds/behavior — what Escape means, where an arrow goes. No framework, no DOM
-packages/platform-web/ @ds/platform-web — the web platform as data. Every WEB backend reads it
-packages/emit-web/ @ds/emit-web — what every DOM-emitting backend shares: contract reading + CSS
-packages/react/    @ds/react  — a backend: React bindings, emitter, behaviour primitives
-packages/vue/      @ds/vue    — a second backend, same shape. It exists to TEST the contract
-packages/angular/  @ds/angular — a third. Attaches to elements rather than rendering them
-packages/wc/       @ds/wc     — a fourth, with NO framework: custom elements + a shadow root
+packages/contracts/ @weave/contracts — THE PRODUCT. Agnostic component contracts + their schema
+packages/tokens/   @weave/tokens — DTCG JSON -> CSS custom properties + TS constants
+packages/behavior/  @weave/behavior — what Escape means, where an arrow goes. No framework, no DOM
+packages/platform-web/ @weave/platform-web — the web platform as data. Every WEB backend reads it
+packages/emit-web/ @weave/emit-web — what every DOM-emitting backend shares: contract reading + CSS
+packages/react/    @weave/react  — a backend: React bindings, emitter, behaviour primitives
+packages/vue/      @weave/vue    — a second backend, same shape. It exists to TEST the contract
+packages/angular/  @weave/angular — a third. Attaches to elements rather than rendering them
+packages/wc/       @weave/wc     — a fourth, with NO framework: custom elements + a shadow root
 apps/react-sandbox/  fast Vite harness at :4300, in the workspace
 apps/vue-sandbox/    the same fifteen contracts at :4301
 apps/angular-sandbox/ and again at :4302
@@ -66,7 +66,7 @@ governance.
 
 ## Brand it before anything else
 
-The repo ships generic (`@ds/*`, `--ds-*`, `data-ds-*`). Run **once**, before writing components:
+The repo ships generic (`@weave/*`, `--weave-*`, `data-weave-*`). Run **once**, before writing components:
 
 ```bash
 pnpm init-ds weave --dry   # inspect

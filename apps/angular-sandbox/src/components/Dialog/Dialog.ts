@@ -14,14 +14,14 @@ import {
   input,
   model,
 } from '@angular/core';
-import { useDismissal } from '@ds/angular/behavior';
-import type { DismissalOptions } from '@ds/angular/behavior';
+import { useDismissal } from '@weave/angular/behavior';
+import type { DismissalOptions } from '@weave/angular/behavior';
 
 // Transcribed from Dialog.contract.json > dismisses. The cases this commits us to
-// are in @ds/contracts/conformance/dismissal.json.
+// are in @weave/contracts/conformance/dismissal.json.
 //
 // The contract also declares escape, which is NOT generated: the
-// platform supplies it for a <dialog>. See @ds/platform-web > visibility.supplies.
+// platform supplies it for a <dialog>. See @weave/platform-web > visibility.supplies.
 const DISMISSAL: DismissalOptions = {
   on: ['outside-press'],
 };
@@ -33,36 +33,36 @@ let nextId = 0;
 
 @Component({
   // The binding's `element` becomes a SELECTOR, because an Angular component attaches
-  // to an element rather than rendering one. A consumer writes <dialog dsDialog>.
-  selector: 'dialog[dsDialog]',
-  exportAs: 'dsDialog',
+  // to an element rather than rendering one. A consumer writes <dialog weaveDialog>.
+  selector: 'dialog[weaveDialog]',
+  exportAs: 'weaveDialog',
   // ViewEncapsulation.None IS LOAD-BEARING. Angular's default rewrites every selector in
   // these stylesheets to include a generated _ngcontent attribute, which would scope them
   // to this component and break the one property the whole system rests on: that a theme
-  // file selecting on [data-ds-component] dresses the React, Vue and Angular builds
+  // file selecting on [data-weave-component] dresses the React, Vue and Angular builds
   // alike. It fails silently — the CSS loads, matches nothing, and the component renders
   // unstyled.
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./Dialog.structure.css', './Dialog.theme.css'],
   host: {
     '[attr.id]': 'baseId',
-    '[attr.data-ds-state-open]': 'open() || null',
-    '[attr.data-ds-size]': 'size()',
+    '[attr.data-weave-state-open]': 'open() || null',
+    '[attr.data-weave-size]': 'size()',
     '[attr.aria-labelledby]': "baseId + '-title'",
-    'data-ds-component': 'Dialog',
-    'data-ds-part': 'root',
+    'data-weave-component': 'Dialog',
+    'data-weave-part': 'root',
     '(pointerdown)': 'dismissal.onPointerDown($event)',
     '(pointercancel)': 'dismissal.onPointerCancel()',
     '(click)': 'dismissal.onClick($event)',
   },
   template: `
-    <div [attr.id]="baseId + '-title'" data-ds-part="title">
+    <div [attr.id]="baseId + '-title'" data-weave-part="title">
       <ng-content select="[slot=title]" />
     </div>
-    <div data-ds-part="body">
+    <div data-weave-part="body">
       <ng-content select="[slot=body]" />
     </div>
-    <div data-ds-part="actions">
+    <div data-weave-part="actions">
       <ng-content select="[slot=actions]" />
     </div>
     <ng-content />
@@ -74,7 +74,7 @@ export class Dialog {
   /** The dialog is showing and holding focus. Two-way: `[(open)]`. */
   readonly open = model<boolean>(false);
 
-  readonly baseId = 'ds-dialog-' + nextId++;
+  readonly baseId = 'weave-dialog-' + nextId++;
 
   private readonly host = inject<ElementRef<HTMLDialogElement>>(ElementRef);
 

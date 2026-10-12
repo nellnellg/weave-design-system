@@ -41,11 +41,11 @@ TEMPLATE.innerHTML = `
 let nextId = 0;
 
 export class Field extends HTMLElement {
-  static readonly tagName = 'ds-field';
+  static readonly tagName = 'weave-field';
   static readonly observedAttributes = ['disabled', 'invalid', 'touched', 'dirty'];
 
   readonly #root: HTMLElement;
-  readonly #baseId = 'ds-field-' + nextId++;
+  readonly #baseId = 'weave-field-' + nextId++;
 
   constructor() {
     super();
@@ -161,6 +161,6 @@ if (!customElements.get(Field.tagName)) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ds-field': Field;
+    'weave-field': Field;
   }
 }

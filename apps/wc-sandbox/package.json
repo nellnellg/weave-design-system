@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
-    "@ds/tokens": "workspace:*",
-    "@ds/wc": "workspace:*"
+    "@weave/tokens": "workspace:*",
+    "@weave/wc": "workspace:*"
   },
   "devDependencies": {
     "vite": "^7.0.0"

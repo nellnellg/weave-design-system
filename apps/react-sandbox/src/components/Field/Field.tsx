@@ -104,14 +104,14 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
       ref={ref}
       id={baseId}
       aria-disabled={disabled || undefined}
-      data-ds-state-invalid={invalidValue || undefined}
-      data-ds-state-touched={touchedValue || undefined}
-      data-ds-state-dirty={dirtyValue || undefined}
-      data-ds-component="Field"
-      data-ds-part="root"
+      data-weave-state-invalid={invalidValue || undefined}
+      data-weave-state-touched={touchedValue || undefined}
+      data-weave-state-dirty={dirtyValue || undefined}
+      data-weave-component="Field"
+      data-weave-part="root"
       className={className}
     >
-      <div id={`${baseId}-label`} data-ds-part="label">
+      <div id={`${baseId}-label`} data-weave-part="label">
         {label}
       </div>
       <div
@@ -122,14 +122,14 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
             .filter(Boolean)
             .join(' ') || undefined
         }
-        data-ds-part="control"
+        data-weave-part="control"
       >
         {control}
       </div>
-      <div id={`${baseId}-description`} data-ds-part="description">
+      <div id={`${baseId}-description`} data-weave-part="description">
         {description}
       </div>
-      <div id={`${baseId}-error`} hidden={!invalidValue} data-ds-part="error">
+      <div id={`${baseId}-error`} hidden={!invalidValue} data-weave-part="error">
         {error}
       </div>
       {children}

@@ -9,14 +9,14 @@ async function setup(page) {
     const form = document.createElement('form');
     form.id = 'form';
     form.innerHTML = `<fieldset id="form-fields">
-      <ds-text-field id="answer" name="answer" value="initial" aria-label="Answer"></ds-text-field>
-      <ds-checkbox id="consent" name="consent" checked="checked"><span slot="label">Consent</span></ds-checkbox>
-      <ds-switch id="setting" name="setting" checked><span slot="label">Setting</span></ds-switch>
-      <ds-slider id="amount" name="amount" value="25" aria-label="Amount"></ds-slider>
-      <ds-radio-group id="choice" name="choice" value="b" aria-label="Choice">
-        <ds-radio-item value="a">Alpha</ds-radio-item><ds-radio-item value="b">Beta</ds-radio-item>
-      </ds-radio-group>
-      <ds-button>Action</ds-button>
+      <weave-text-field id="answer" name="answer" value="initial" aria-label="Answer"></weave-text-field>
+      <weave-checkbox id="consent" name="consent" checked="checked"><span slot="label">Consent</span></weave-checkbox>
+      <weave-switch id="setting" name="setting" checked><span slot="label">Setting</span></weave-switch>
+      <weave-slider id="amount" name="amount" value="25" aria-label="Amount"></weave-slider>
+      <weave-radio-group id="choice" name="choice" value="b" aria-label="Choice">
+        <weave-radio-item value="a">Alpha</weave-radio-item><weave-radio-item value="b">Beta</weave-radio-item>
+      </weave-radio-group>
+      <weave-button>Action</weave-button>
     </fieldset><button type="submit">Submit answers</button>`;
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -167,7 +167,7 @@ export function formRegressions() {
     await page.evaluate(async () => {
       document.querySelector('#consent').shadowRoot.querySelector('[part="root"]').click();
       document
-        .querySelector('#choice ds-radio-item')
+        .querySelector('#choice weave-radio-item')
         .shadowRoot.querySelector('[part="root"]')
         .click();
       document.querySelector('#form').reset();

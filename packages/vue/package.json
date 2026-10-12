@@ -1,5 +1,5 @@
 {
-  "name": "@ds/vue",
+  "name": "@weave/vue",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -26,15 +26,15 @@
     "dev": "vite build --watch"
   },
   "dependencies": {
-    "@ds/behavior": "workspace:*",
-    "@ds/emit-web": "workspace:*",
-    "@ds/platform-web": "workspace:*"
+    "@weave/behavior": "workspace:*",
+    "@weave/emit-web": "workspace:*",
+    "@weave/platform-web": "workspace:*"
   },
   "peerDependencies": {
     "vue": "^3.5"
   },
   "devDependencies": {
-    "@ds/tokens": "workspace:*",
+    "@weave/tokens": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.0",
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.0",

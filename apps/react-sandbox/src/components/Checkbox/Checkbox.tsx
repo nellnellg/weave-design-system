@@ -81,15 +81,15 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(function Ch
         rest.onClick?.(event);
         activate(event);
       }}
-      data-ds-component="Checkbox"
-      data-ds-part="root"
+      data-weave-component="Checkbox"
+      data-weave-part="root"
       className={className}
     >
-      <div data-ds-part="box">
-        <div hidden={!(checkedValue === 'checked')} data-ds-part="tick" />
-        <div hidden={!(checkedValue === 'mixed')} data-ds-part="dash" />
+      <div data-weave-part="box">
+        <div hidden={!(checkedValue === 'checked')} data-weave-part="tick" />
+        <div hidden={!(checkedValue === 'mixed')} data-weave-part="dash" />
       </div>
-      <div data-ds-part="label">{label}</div>
+      <div data-weave-part="label">{label}</div>
       {children}
     </button>
   );

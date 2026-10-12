@@ -49,17 +49,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       ref={ref}
       type="button"
       disabled={disabled || undefined}
-      data-ds-state-loading={loading || undefined}
-      data-ds-hierarchy={hierarchy}
-      data-ds-variant={variant}
-      data-ds-size={size}
-      data-ds-component="Button"
-      data-ds-part="root"
+      data-weave-state-loading={loading || undefined}
+      data-weave-hierarchy={hierarchy}
+      data-weave-variant={variant}
+      data-weave-size={size}
+      data-weave-component="Button"
+      data-weave-part="root"
       className={className}
     >
-      <div data-ds-part="icon-start">{iconStart}</div>
-      <div data-ds-part="label">{children}</div>
-      <div data-ds-part="icon-end">{iconEnd}</div>
+      <div data-weave-part="icon-start">{iconStart}</div>
+      <div data-weave-part="label">{children}</div>
+      <div data-weave-part="icon-end">{iconEnd}</div>
     </button>
   );
 });

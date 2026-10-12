@@ -50,11 +50,11 @@ const fallthrough = computed(() => ({ ...attrs }));
     v-bind="fallthrough"
     role="tabpanel"
     :id="baseId"
-    :data-ds-state-selected="selected || undefined"
+    :data-weave-state-selected="selected || undefined"
     :tabindex="isDisabled ? -1 : 0"
     :hidden="!selected"
     :aria-labelledby="`${collection.baseId}-TabItem-${props.value}`"
-    data-ds-component="TabPanel"
-    data-ds-part="root"
+    data-weave-component="TabPanel"
+    data-weave-part="root"
   ></div>
 </template>
