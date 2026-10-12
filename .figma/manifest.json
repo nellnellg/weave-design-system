@@ -1,11 +1,9 @@
 {
   "_schema": "1.0",
   "_doc": "Project anchor for this design system's Figma integration. Single source of truth for which Figma file we read from, and for the identity that generation needs. Maps in maps/*.json resolve their `source` keys against this file. Never hard-code a file key in a script or a skill — read it from here, so pointing the system at a different file is one edit.",
-  "lastUpdated": "2026-08-28",
-
+  "lastUpdated": "2026-10-12",
   "bridges": {
     "_doc": "TWO bridges, recorded separately. The READ bridge is the only one anything depends on: the explore -> report -> decide -> build arc completes without the write bridge, and `pnpm verify` is green on a machine with neither Figma Desktop nor a plugin installed — which is what keeps the template's fresh-clone promise intact. The WRITE bridge is opt-in and unwired: no pnpm script, no gate and no CI job invokes it. Code stays canonical for token values in both directions; a difference is drift in Figma, never a change to adopt back.",
-
     "read": {
       "_doc": "The OFFICIAL Figma MCP connector. No daemon, no plugin, no Figma Desktop. Chosen because everything the arc needs is a READ, and every other bridge adds a local install and a background process that can fail.",
       "kind": "figma-mcp",
@@ -15,7 +13,6 @@
       "usedBy": [],
       "_usedByNote": "No skill. Reading the design source is a person's job, done when reference is needed — a scheduled sweep would imply an authority the canvas does not have. The call sequences live in README.md."
     },
-
     "write": {
       "_doc": "figma-console MCP driving the Desktop Bridge plugin. OPT-IN: nothing in this repo depends on it. Every write must first compare `figma.fileKey` against sources.<key>.key and pin the target with `figma_navigate({ url, lock: true })` — the active file drifts between open documents, and an unpinned write lands wherever the user last clicked. First exercised against this source on 2026-08-28.",
       "kind": "figma-console-mcp",
@@ -38,128 +35,99 @@
         ".claude/skills/ds-figma-explain"
       ],
       "gated": false,
-      "_gatedNote": "NO gate exercises this bridge, so a generated Figma set can drift from its component with nothing failing anywhere. maps/components.json is a record, not a check. This is a known hole and it contradicts the repo's own enforcement rule — a contract whose breach produces no build error has to be gated in CI, or it is enforced on whichever machine happens to run it. Accepted at template stage because nothing has been generated yet; it should not survive contact with a real component library. The related quiet failure: every collection in this source has ONE mode, so a bound value and a baked literal render identically and a mis-bound component passes visual review. Read boundVariables back rather than trusting the render."
+      "_gatedNote": "NO gate exercises this bridge, so a generated Figma set can drift from its component with nothing failing anywhere. maps/components.json is a record, not a check. This is a known hole and it contradicts the repo's own enforcement rule — a contract whose breach produces no build error has to be gated in CI, or it is enforced on whichever machine happens to run it. Accepted at template stage because nothing has been generated yet; it should not survive contact with a real component library. Read boundVariables back rather than trusting the render: a baked literal and a bound value look identical in any single mode.",
+      "_note20261012": "The 2026-10-12 foundations write used the OFFICIAL Figma connector's use_figma tool, not this figma-console bridge. The fileKey was passed explicitly on every call, which removes the drifting-active-file risk described above."
     }
   },
-
   "sources": {
     "weave": {
-      "key": "eUO2kF0A3tJXdVTcvEPQjW",
-      "name": "weave — Mokkap masterclass",
-      "url": "https://www.figma.com/design/eUO2kF0A3tJXdVTcvEPQjW/weave---Mokkap-masterclass-29-08-2026",
-      "purpose": "The design source. A dark screen-recorder UI. Variables, text styles and component sets live here.",
+      "key": "SS0HeEPWtwWb094HJgznth",
+      "name": "Weave",
+      "url": "https://www.figma.com/design/SS0HeEPWtwWb094HJgznth/Weave",
+      "purpose": "The design source. Started EMPTY on 2026-10-12, so the flow ran in reverse for the foundations: tokens were authored in code from a brief, then written into this file as variables (5 collections, 139 variables) plus a Foundations specimen page. Code stays canonical for values; a difference here is drift in Figma.",
       "published": false,
       "libraryKey": null,
       "_publishedNote": "Not published as a library, so component instances have no durable componentKey yet. Until it is published the only join available is pageId + componentSetId, and those are file-local and change. Record them, but treat them as refreshable — see schema/components.schema.json.",
-      "data": ["file", "variables", "styles", "components"]
+      "data": ["file", "variables", "styles", "components"],
+      "_previousSource": "Until 2026-10-12 this key pointed at the template author's file (eUO2kF0A3tJXdVTcvEPQjW, \"weave — Mokkap masterclass\"). Everything below was re-measured against the new file; nothing from the old reading carries over."
     }
   },
-
   "identity": {
     "prefix": {
       "_doc": "Set once in /ds.config.json via `pnpm init-ds <name>`. Repeated here only so a Figma script has one file to read; ds.config.json is authoritative and init-ds rewrites both.",
-      "name": "ds",
-      "scope": "@ds",
-      "token": "--ds",
-      "data": "data-ds"
+      "name": "weave",
+      "scope": "@weave",
+      "token": "--weave",
+      "data": "data-weave"
     },
-
     "variableNaming": {
-      "_doc": "RE-MEASURED 2026-08-28 through the write bridge, correcting an earlier reading. A Figma variable carries TWO names and the previous entry conflated them: `name` is the slash path the API returns and the one you must look variables up by; `codeSyntax.WEB` is a separate author-set string that Figma emits in Dev Mode. The earlier `observed` list recorded codeSyntax values and labelled them names — which is where the phantom `weave-ds-` prefix came from. Both fields are real. All 87 variables carry both.",
+      "_doc": "MEASURED 2026-10-12 by live read of the Weave file. A variable's Figma `name` is its DTCG path with `/` separators; `codeSyntax.WEB` is the CSS custom property wrapped in var(). Both were written from code, so they agree by construction — a read that finds otherwise is drift.",
       "figmaNamePattern": "{path}",
-      "figmaCodeSyntaxPattern": "weave-ds-{path-flattened-to-dashes}",
+      "figmaCodeSyntaxPattern": "var(--{tokenPrefix}-{path-flattened-to-dashes})",
       "cssPattern": "--{tokenPrefix}-{path}",
       "separator": "/",
       "separatorUnknown": false,
-      "_separatorNote": "Confirmed by live read: group paths are slash-separated, which settles the DTCG nesting.",
+      "_separatorNote": "Slash-separated groups, one per DTCG nesting level.",
       "observed": [
-        "brand/primary",
-        "brand/hover",
-        "surface/primary",
-        "surface/overlay",
-        "surface/subtle",
-        "surface/ghost",
-        "border/primary",
-        "text/primary",
-        "text/secondary",
-        "text/disabled",
-        "text/inverted",
-        "interactive/hover",
-        "interactive/selectedBg",
-        "control/waveform",
-        "control/off",
-        "color/purple/500",
-        "color/gray/900",
-        "space/0",
-        "space/3",
-        "radius/m",
-        "radius/full"
+        "color/violet/500",
+        "color/brand/primary",
+        "color/fill/loud",
+        "color/on/loud",
+        "color/surface/base",
+        "space/m",
+        "radius/s",
+        "font/size/m"
       ],
       "observedCodeSyntax": [
-        "brand/primary          -> codeSyntax.WEB: weave-ds-brand-primary",
-        "surface/primary        -> codeSyntax.WEB: weave-ds-surface-primary",
-        "color/purple/500       -> codeSyntax.WEB: weave-ds-color-purple-500",
-        "interactive/selectedBg -> codeSyntax.WEB: weave-ds-interactive-selectedbg"
+        "color/fill/loud -> codeSyntax.WEB: var(--weave-color-fill-loud)",
+        "space/m -> codeSyntax.WEB: var(--weave-space-m)"
       ],
       "examples": [
-        "space/3          -> --weave-space-3          -> space.3",
-        "radius/m         -> --weave-radius-m         -> radius.m",
-        "surface/primary  -> --weave-surface-primary  -> surface.primary"
+        "color/fill/loud -> --weave-color-fill-loud -> color.fill.loud",
+        "space/m -> --weave-space-m -> space.m",
+        "radius/s -> --weave-radius-s -> radius.s"
       ],
       "knownProblems": [
-        "PREFIX CONFLICT, UNDECIDED. `codeSyntax.WEB` carries a `weave-ds-` prefix while /ds.config.json declares tokenPrefix `ds`, i.e. `--weave-*`. Running `pnpm init-ds weave` would make it `--weave-*`, which still does not equal `weave-ds-*`. Three candidate prefixes, no decision. Settle which is canonical before generating tokens, and settle it in ds.config.json — never by hand-editing one side.",
-        "`space/0..9` is a numeric index while `radius/m` is a t-shirt scale — two naming systems in one file. Decide which one wins before generating; do not reproduce both.",
-        "`interactive/selectedBg` is camelCase; every other token path is lowercase.",
-        "`control/waveform` and `control/off` are component-specific but sit in the global namespace.",
-        "Primitive variables have `scopes: []` while token variables carry `ALL_SCOPES`. Unscoped primitives are still offered everywhere in the picker, so nothing stops a designer binding straight to `color/purple/500`."
+        "Primitives are scoped [] (hidden from pickers) on purpose; roles in Color are what designers bind.",
+        "font/line-height/* are unitless multipliers (CSS). Figma line-height variables bind in px, so these are scoped [] and applied as percentages by hand."
       ]
     },
-
     "font": {
-      "_doc": "RE-MEASURED 2026-08-28: all 8 local text styles enumerated, not just the 5 seen on nodes. Every style is Lexend Deca and binds fontSize, fontFamily and fontWeight to variables — so type must be applied as a STYLE, never as a hand-set fontName + fontSize, or that linkage is thrown away.",
-      "family": "Lexend Deca",
-      "fallback": "sans-serif",
-      "textStyles": [
-        "UI/Button — Medium 16, lineHeight 124.875%",
-        "UI/Label — Light 16, lineHeight AUTO",
-        "UI/Label-emphasis — Medium 16, lineHeight AUTO",
-        "UI/Description — Light 14, lineHeight AUTO",
-        "UI/Caption — Light 12, lineHeight AUTO",
-        "Display/Heading — Medium 20, lineHeight AUTO",
-        "Display/Time — Medium 16, lineHeight AUTO",
-        "Display/Title — Medium 24, lineHeight AUTO"
-      ],
+      "_doc": "MEASURED 2026-10-12. Families and sizes exist as variables in the Typography collection; NO text styles exist yet.",
+      "family": "Inter",
+      "display": "Space Grotesk",
+      "mono": "JetBrains Mono",
+      "fallback": "system-ui, sans-serif",
+      "textStyles": [],
       "knownProblems": [
-        "CORRECTS AN EARLIER READING. This previously said 'UI/Button uses 1.2487 while every other style uses 100'. The 100 was wrong: measured, the other seven styles are AUTO. AUTO is Figma's font-metric default, so seven of eight styles have NO controlled line height at all — the defect is larger than first recorded, not a disagreement between two values.",
-        "`UI/Button`'s 124.87499713897705% is a dragged handle, not a designed value. Treat it as evidence when the type scale is decided, never as a number to reproduce.",
-        "Decide whether the type scale owns line height before generating type tokens. Every component set generated before that is settled inherits the inconsistency."
+        "No text styles. Type is applied as raw font + size on the specimen page. Create styles before generating components, or every component set bakes in hand-set type."
       ]
     },
-
     "themes": {
-      "_doc": "The source file has no light/dark axis — it is dark-only. Recorded here because dark-only BY DECISION and dark-only BY OMISSION are different states, and only one of them is safe to build on.",
-      "modes": ["dark"],
-      "decided": false
+      "_doc": "MEASURED 2026-10-12. The Color collection has Light and Dark modes, by decision (brief: light + dark). Light is the default; code emits Dark under [data-weave-theme='dark'].",
+      "modes": ["light", "dark"],
+      "decided": true
     },
-
     "variableCollections": {
-      "_doc": "Figma collection -> canonical DTCG source file under packages/tokens/tokens/. EMPTY: filled by hand from a live read, once the token set is decided. A Figma variable whose collection has no entry here resolves to `code: null` in maps/tokens.json and is reported as drift — that is the signal, not a silent gap."
+      "_doc": "Figma collection -> canonical DTCG source file under packages/tokens/tokens/. Filled 2026-10-12 from a live read; maps/tokens.json carries the per-variable correspondence.",
+      "Primitives": "packages/tokens/tokens/color.palette.json",
+      "Color": "packages/tokens/tokens/color.semantic.json (Light) + packages/tokens/tokens/themes/dark.json (Dark)",
+      "Spacing": "packages/tokens/tokens/space.json",
+      "Radius": "packages/tokens/tokens/radius.json",
+      "Typography": "packages/tokens/tokens/typography.json"
     },
-
     "variantConventions": {
       "_doc": "A Figma variant property value must match the component's prop value exactly, or the two surfaces describe different components. The canon lives in .ai/maps/prop-map.md §1 and packages/contracts/prop-canon.json — THOSE ARE AUTHORITATIVE; this is a pointer, not a copy.",
       "canonSource": [".ai/maps/prop-map.md", "packages/contracts/prop-canon.json"],
       "propertyCase": "TitleCase property name, prop-exact value — Hierarchy=secondary, Size=m",
       "statesAreNotVariants": "Hover / Pressed / Focused are runtime states the browser owns. They must not become a variant property that maps to a prop. See .ai/maps/proposals/README.md."
     },
-
     "codePathConvention": {
       "_doc": "A Figma component reconciles against its CONTRACT, not against a framework implementation. Component source is generated into a consumer's repository and is not in this repo at all, so there is nothing here for it to point at.",
       "pattern": "packages/contracts/components/<Name>/",
       "files": ["<Name>.contract.json", "CHANGELOG.md"]
     }
   },
-
   "maps": {
     "tokens": "maps/tokens.json",
     "components": "maps/components.json"
