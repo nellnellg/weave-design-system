@@ -1,0 +1,85 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Primitive ramps. PROPOSED starter palette, chosen 2026-10-12 from a brief (bold & vibrant, light + dark) because the Figma source was empty — not measured from a design. Re-check once the design exists in Figma.",
+    "violet": {
+      "$description": "Brand ramp. Electric violet.",
+      "50": { "$value": "#f4f0ff" },
+      "100": { "$value": "#e9e0ff" },
+      "200": { "$value": "#d4c2ff" },
+      "300": { "$value": "#b699ff" },
+      "400": { "$value": "#9466ff" },
+      "500": { "$value": "#7a3dff" },
+      "600": { "$value": "#6526f0" },
+      "700": { "$value": "#5419cc" },
+      "800": { "$value": "#4314a3" },
+      "900": { "$value": "#34107d" },
+      "950": { "$value": "#1f0752" }
+    },
+    "coral": {
+      "$description": "Accent ramp. Hot coral, the energetic counterpoint to violet.",
+      "50": { "$value": "#fff2ee" },
+      "100": { "$value": "#ffe1d8" },
+      "200": { "$value": "#ffc0ae" },
+      "300": { "$value": "#ff977b" },
+      "400": { "$value": "#ff6f4d" },
+      "500": { "$value": "#ff4d26" },
+      "600": { "$value": "#e8380f" },
+      "700": { "$value": "#c02b0a" },
+      "800": { "$value": "#98240c" },
+      "900": { "$value": "#7a200e" },
+      "950": { "$value": "#430d03" }
+    },
+    "gray": {
+      "$description": "Neutral ramp, faintly cool so it sits with the violet.",
+      "0": { "$value": "#ffffff" },
+      "50": { "$value": "#f7f7fa" },
+      "100": { "$value": "#eeeef3" },
+      "200": { "$value": "#dedee7" },
+      "300": { "$value": "#c4c4d1" },
+      "400": { "$value": "#9c9caf" },
+      "500": { "$value": "#747489" },
+      "600": { "$value": "#575769" },
+      "700": { "$value": "#414151" },
+      "800": { "$value": "#2a2a36" },
+      "900": { "$value": "#1a1a23" },
+      "950": { "$value": "#0e0e14" }
+    },
+    "red": {
+      "$description": "Danger ramp.",
+      "50": { "$value": "#fef1f1" },
+      "100": { "$value": "#fddcdc" },
+      "300": { "$value": "#f59a9a" },
+      "400": { "$value": "#ef6767" },
+      "500": { "$value": "#e5383b" },
+      "600": { "$value": "#cc1f25" },
+      "700": { "$value": "#a8181d" },
+      "900": { "$value": "#5e1013" },
+      "950": { "$value": "#36080a" }
+    },
+    "green": {
+      "$description": "Success ramp.",
+      "50": { "$value": "#ecfdf3" },
+      "100": { "$value": "#d1fadf" },
+      "300": { "$value": "#6ce9a6" },
+      "400": { "$value": "#32d583" },
+      "500": { "$value": "#12b76a" },
+      "600": { "$value": "#039855" },
+      "700": { "$value": "#027a48" },
+      "900": { "$value": "#054f31" },
+      "950": { "$value": "#032d1c" }
+    },
+    "amber": {
+      "$description": "Warning ramp.",
+      "50": { "$value": "#fffaeb" },
+      "100": { "$value": "#fef0c7" },
+      "300": { "$value": "#fec84b" },
+      "400": { "$value": "#fdb022" },
+      "500": { "$value": "#f79009" },
+      "600": { "$value": "#dc6803" },
+      "700": { "$value": "#b54708" },
+      "900": { "$value": "#7a2e0e" },
+      "950": { "$value": "#451a05" }
+    }
+  }
+}

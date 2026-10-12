@@ -31,7 +31,10 @@ const PREFIX = brand.tokenPrefix;
  */
 const posix = (p) => p.split('\\').join('/');
 
-const SOURCE = posix(join(here, 'tokens/**/*.json'));
+// Top level only: tokens/themes/ holds per-theme overrides, built separately below so they do not
+// collide with the default (light) values on :root.
+const SOURCE = posix(join(here, 'tokens/*.json'));
+const THEMES_DIR = join(here, 'tokens/themes');
 const BUILD = posix(join(here, 'build'));
 
 /**
@@ -162,6 +165,52 @@ async function build() {
 
   writeTypes(names);
   console.log(`tokens: built ${names.length} token(s).`);
+
+  await buildThemes();
+}
+
+/**
+ * One file per theme under tokens/themes/ -> build/css/theme-<name>.css, scoped to
+ * [data-<dataPrefix>-theme='<name>']. Each theme file holds only the roles that differ; it is
+ * resolved against the full base set but emits only its own tokens, as var() references, so an
+ * alias like fill.loud -> brand.primary follows the theme without being restated.
+ */
+async function buildThemes() {
+  if (!existsSync(THEMES_DIR)) return;
+  const themes = readdirSync(THEMES_DIR)
+    .filter((f) => f.endsWith('.json'))
+    .sort(byCodePoint);
+
+  for (const file of themes) {
+    const name = file.replace(/\.json$/, '');
+    const themePath = posix(join(THEMES_DIR, file));
+    const sd = new StyleDictionary({
+      source: [SOURCE, themePath],
+      usesDtcg: true,
+      log: { verbosity: 'default', warnings: 'disabled' },
+      platforms: {
+        css: {
+          transformGroup: 'css',
+          prefix: PREFIX,
+          buildPath: `${BUILD}/css/`,
+          options: { usesDtcg: true },
+          files: [
+            {
+              destination: `theme-${name}.css`,
+              format: 'css/variables',
+              filter: (token) => posix(token.filePath) === themePath,
+              options: {
+                outputReferences: true,
+                selector: `[data-${brand.dataPrefix}-theme='${name}']`,
+              },
+            },
+          ],
+        },
+      },
+    });
+    await sd.buildAllPlatforms();
+    console.log(`tokens: built theme "${name}".`);
+  }
 }
 
 build().catch((err) => {

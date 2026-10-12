@@ -3,10 +3,15 @@
 **Authoring format: [DTCG](https://tr.designtokens.org/format/)** — every token is `$value` +
 `$type`, and a token that references another uses `{dot.path}`.
 
-This directory is **empty on purpose.** The token set is measured from the design source by hand,
-reviewed, then committed here — see [`../../../.figma/README.md`](../../../.figma/README.md) for
-how to read the file and what it can and cannot tell you. An invented token set is worse than none:
-it looks authoritative and nobody re-checks it.
+The template shipped this directory empty: a token set is normally measured from the design source
+by hand, reviewed, then committed here — see [`../../../.figma/README.md`](../../../.figma/README.md)
+for how to read the file and what it can and cannot tell you. An invented token set is worse than
+none: it looks authoritative and nobody re-checks it.
+
+**Current state (2026-10-12): a PROPOSED starter set.** The Figma source was empty, so these tokens
+were chosen from a written brief (bold & vibrant, slightly rounded corners, light + dark) rather
+than measured. Every on/fill and text/surface pair passes WCAG AA in both themes. Treat the values
+as a first draft to re-check once the design exists in Figma, not as a measured source.
 
 ## 1. File naming
 
@@ -65,6 +70,10 @@ weave-ds-space-3           ->  --weave-space-3           ->  space.3
 If the system has more than one theme, model it as **one file per axis**, composed as classes —
 not as a `light`/`dark` key inside every token. That keeps a new theme to one new file rather than
 an edit to every existing one.
+
+Here: the default theme (light) is the top-level files, emitted on `:root`. Each file in
+`themes/` holds only the roles that differ and is emitted to `build/css/theme-<name>.css`, scoped
+to `[data-weave-theme='<name>']`. Load both stylesheets and set the attribute to switch.
 
 A system with only one theme should say so out loud in the exploration report. Dark-only _by
 decision_ is fine; dark-only _by omission_ is a finding.

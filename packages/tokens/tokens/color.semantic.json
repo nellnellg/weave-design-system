@@ -1,0 +1,78 @@
+{
+  "color": {
+    "brand": {
+      "primary": { "$value": "{color.violet.600}" },
+      "hover": { "$value": "{color.violet.700}" },
+      "subtle": { "$value": "{color.violet.50}" },
+      "on-subtle": { "$value": "{color.violet.700}" }
+    },
+    "accent": {
+      "primary": { "$value": "{color.coral.500}" },
+      "hover": { "$value": "{color.coral.400}" }
+    },
+    "danger": {
+      "primary": { "$value": "{color.red.600}" },
+      "hover": { "$value": "{color.red.700}" },
+      "subtle": { "$value": "{color.red.50}" },
+      "on-subtle": { "$value": "{color.red.700}" }
+    },
+    "success": {
+      "primary": { "$value": "{color.green.600}" },
+      "subtle": { "$value": "{color.green.50}" },
+      "on-subtle": { "$value": "{color.green.700}" }
+    },
+    "warning": {
+      "primary": { "$value": "{color.amber.500}" },
+      "subtle": { "$value": "{color.amber.50}" },
+      "on-subtle": { "$value": "{color.amber.700}" }
+    },
+    "surface": {
+      "base": { "$value": "{color.gray.0}", "$description": "The page." },
+      "subtle": { "$value": "{color.gray.50}", "$description": "Recessed areas, wells." },
+      "raised": {
+        "$value": "{color.gray.0}",
+        "$description": "Cards, popovers — separated by border/shadow, not tint."
+      },
+      "overlay": { "$value": "{color.gray.0}", "$description": "Dialogs." },
+      "inverse": { "$value": "{color.gray.900}", "$description": "Tooltips." }
+    },
+    "text": {
+      "primary": { "$value": "{color.gray.900}" },
+      "secondary": { "$value": "{color.gray.600}" },
+      "disabled": { "$value": "{color.gray.400}" },
+      "inverse": { "$value": "{color.gray.0}" },
+      "brand": { "$value": "{color.brand.primary}" },
+      "danger": { "$value": "{color.danger.primary}" }
+    },
+    "border": {
+      "default": { "$value": "{color.gray.200}" },
+      "strong": { "$value": "{color.gray.300}" },
+      "brand": { "$value": "{color.brand.primary}" },
+      "danger": { "$value": "{color.danger.primary}" },
+      "focus": { "$value": "{color.violet.500}", "$description": "Focus ring." }
+    },
+    "fill": {
+      "$description": "Component slot tier: what a control is filled with. A `variant` prop re-points these.",
+      "loud": { "$value": "{color.brand.primary}" },
+      "loud-hover": { "$value": "{color.brand.hover}" },
+      "neutral": { "$value": "{color.gray.100}" },
+      "neutral-hover": { "$value": "{color.gray.200}" },
+      "danger": { "$value": "{color.danger.primary}" },
+      "danger-hover": { "$value": "{color.danger.hover}" },
+      "accent": { "$value": "{color.accent.primary}" },
+      "accent-hover": { "$value": "{color.accent.hover}" },
+      "selected": { "$value": "{color.brand.subtle}" }
+    },
+    "on": {
+      "$description": "Content colour that sits ON the matching fill. Every pair is checked for WCAG AA (4.5:1).",
+      "loud": { "$value": "{color.gray.0}" },
+      "neutral": { "$value": "{color.text.primary}" },
+      "danger": { "$value": "{color.gray.0}" },
+      "accent": {
+        "$value": "{color.gray.950}",
+        "$description": "Dark, not white: white on coral fails contrast."
+      },
+      "selected": { "$value": "{color.brand.on-subtle}" }
+    }
+  }
+}

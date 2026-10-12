@@ -1,0 +1,16 @@
+{
+  "space": {
+    "$type": "dimension",
+    "$description": "Spacing. T-shirt scale, the same vocabulary as radius and font size. 4px base grid.",
+    "none": { "$value": "0px" },
+    "3xs": { "$value": "2px" },
+    "2xs": { "$value": "4px" },
+    "xs": { "$value": "8px" },
+    "s": { "$value": "12px" },
+    "m": { "$value": "16px" },
+    "l": { "$value": "24px" },
+    "xl": { "$value": "32px" },
+    "2xl": { "$value": "48px" },
+    "3xl": { "$value": "64px" }
+  }
+}
