@@ -62,7 +62,7 @@ The React sandbox labels every specimen `works` / `partial` / `shell` because so
 against its contract key by key. This page has not been through that full process, so it carries no
 verdicts — but it HAS been driven, and the following were checked in Chrome:
 
-the switch toggles, announces `ds-checked-change`, writes `aria-checked` on the inner element and
+the switch toggles, announces `weave-checked-change`, writes `aria-checked` on the inner element and
 the attribute on the host, and follows a property written from outside; a read-only switch refuses;
 the tri-state checkbox resolves `mixed` to `checked`; enumerated defaults are present in the DOM;
 the accordion expands and unhides its panel; tab arrow-keys move focus, carry the selection and the

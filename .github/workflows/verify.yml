@@ -121,23 +121,16 @@ jobs:
         run: pnpm report:paints
 
   # ---------------------------------------------------------------------------------------
-  # The first command every user of this template runs is `pnpm init-ds <name>`. If that leaves
-  # the repo in a state that fails `pnpm verify`, the first thing a newcomer sees is a red gate
-  # they did not cause — which is worse than no gate, because it teaches them the gates lie.
+  # This repo was branded "weave" with `pnpm init-ds weave` on 2026-10-12. The template's job here
+  # renamed a fresh checkout and re-ran verify; on a branded repo init-ds refuses to run (it is not a
+  # migration tool), so that job could only ever fail. What still matters after branding is that no
+  # old-prefix straggler creeps back in, and that check works on a branded repo.
   #
-  # This is not hypothetical: renaming changes string widths inside markdown tables, so Prettier's
-  # column alignment went stale and format:check failed. It was found by hand and fixed once.
-  # Nothing but this job stops it coming back.
-  #
-  # The matrix covers a name shorter and a name much longer than the default `ds`, because the
-  # failure was width-dependent and only shows up when columns actually shift.
-  init-ds:
-    name: init-ds (${{ matrix.name }})
+  # init-ds's rules do not cover every syntax: custom event names (`ds-value-change`) were missed and
+  # had to be fixed by hand. A straggler of a shape the rules do not know will not be caught here.
+  brand:
+    name: brand (no ds- stragglers)
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        name: [weave, acmedesignsystem]
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
@@ -145,20 +138,5 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
-
-      - name: rename
-        run: pnpm init-ds ${{ matrix.name }}
-
-      # The scope moved, so the workspace links have to be re-resolved. No --frozen-lockfile:
-      # the lockfile legitimately changes here, and that is the point of the step.
-      - run: pnpm install --no-frozen-lockfile
-
-      - name: the renamed repo must still be green
-        run: pnpm verify
-
-      # A half-rename is the failure this whole codemod exists to prevent, and it produces no
-      # build error — so assert directly that nothing kept the old prefix.
-      - name: no stragglers left behind
-        run: pnpm init-ds --check
+      - run: pnpm init-ds --check

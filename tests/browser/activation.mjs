@@ -17,7 +17,7 @@ export function activationRegressions() {
           host.ariaLabel = 'Activation control';
           host.dataset.veto = 'true';
           host.dataset.changes = '0';
-          host.addEventListener('ds-checked-change', () => {
+          host.addEventListener('weave-checked-change', () => {
             host.dataset.changes = String(Number(host.dataset.changes) + 1);
           });
           host.addEventListener('click', (event) => {
@@ -140,7 +140,7 @@ export function activationRegressions() {
       const host = document.createElement('weave-switch');
       document.body.append(host);
       const changes = [];
-      host.addEventListener('ds-checked-change', (event) => changes.push(event.detail));
+      host.addEventListener('weave-checked-change', (event) => changes.push(event.detail));
       host.shadowRoot.querySelector('button').click();
       host.shadowRoot.querySelector('button').click();
       const during = host.checked;

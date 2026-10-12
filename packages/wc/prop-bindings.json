@@ -5,7 +5,7 @@
   "conventions": {
     "propCase": "camelCase as a property, kebab-case as an attribute, and the component keeps the two in step by hand. `readOnly` the property is `read-only` the attribute — the same split the DOM already has between `el.className` and `class=`.",
     "valueCase": "kebab-case — identical to the canon",
-    "eventPrefix": "<prefix>-, e.g. `ds-checked-change`. Prefixed because an event name is global once it crosses the shadow boundary and `change` is already taken by the platform.",
+    "eventPrefix": "<prefix>-, e.g. `weave-checked-change`. Prefixed because an event name is global once it crosses the shadow boundary and `change` is already taken by the platform.",
     "booleanNaming": "bare adjective, as the canon requires. Presence-only, as every HTML boolean attribute is."
   },
   "_tagRule": "A custom element's tag is `<prefix>-<kebab(Component)>`: `<weave-tab-item>`. Derived rather than stored in the binding, because a tag that could disagree with the component name would be a second name for one thing. The hyphen is not a style choice — a custom element name is REQUIRED to contain one, which is the platform reserving every single-word tag for itself.",

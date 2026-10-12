@@ -8,9 +8,9 @@ The scripts themselves live in [`scripts/`](../../scripts/README.md) and
 
 ## What is here
 
-| Workflow                     | Jobs                           | What it protects                                                                        |
-| ---------------------------- | ------------------------------ | --------------------------------------------------------------------------------------- |
-| [`verify.yml`](./verify.yml) | `verify`, `init-ds`, `browser` | Repository checks, branding codemod health, and generated-component browser regressions |
+| Workflow                     | Jobs                         | What it protects                                                                         |
+| ---------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------- |
+| [`verify.yml`](./verify.yml) | `verify`, `brand`, `browser` | Repository checks, no old-prefix stragglers, and generated-component browser regressions |
 
 ### `browser`
 
@@ -31,18 +31,18 @@ GitHub UI without anyone reading a log.
 **The same set, not the same order** — and the difference matters. This job builds tokens early;
 `pnpm verify` builds late. So a gate that accidentally depends on build output passes here and fails
 there. That is not hypothetical: `verify:docs` shipped requiring generated token files to exist,
-this job went green, and the `init-ds` job below caught it by running the real `pnpm verify` on a
-clean checkout. **A gate must not depend on anything produced later in its own chain.**
+this job went green, and the template's `init-ds` job (since replaced by `brand`, below) caught it
+by running the real `pnpm verify` on a clean checkout. **A gate must not depend on anything produced later in its own chain.**
 
-### `init-ds`
+### `brand`
 
-A matrix that runs `pnpm init-ds <name>` on a clean checkout, then asserts the **renamed** repo is
-still green and that no stragglers of the old prefix survive.
+Runs `pnpm init-ds --check`: asserts no straggler of the template's `ds` prefix survives anywhere the
+rename rules know about.
 
-The branding codemod rewrites the package scope, the CSS custom-property prefix and the
-data-attribute prefix together. It runs once per project, which means in normal use it is never
-exercised again — exactly the shape of thing that rots silently. This job is the only reason it
-stays correct.
+The template shipped an `init-ds` job instead, which branded a clean checkout and re-ran `pnpm verify`.
+This repo was branded `weave` on 2026-10-12, and `init-ds` refuses to run on a branded repo, so that
+job could only fail. The check is narrower than it looks: init-ds's rules missed custom event names
+(`ds-value-change`), which were fixed by hand and which this job would not have caught.
 
 ## Why gates live here and not only in `pnpm verify`
 
